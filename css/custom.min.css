@@ -1,0 +1,2275 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+html {
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+body {
+    position: relative;
+    font-family: "Roboto", sans-serif;
+    background: #fff;
+    overflow-x: hidden;
+}
+
+@font-face {
+    font-family: "Eurostar Black Extended";
+    src: url("../fonts/EurostarBlackExtended.eot");
+    src: url("../fonts/EurostarBlackExtended.eot?#iefix") format("embedded-opentype"), url("../fonts/EurostarBlackExtended.woff2") format("woff2"), url("../fonts/EurostarBlackExtended.woff") format("woff"), url("../fonts/EurostarBlackExtended.ttf") format("truetype"), url("../fonts/EurostarBlackExtended.svg#EurostarBlackExtended") format("svg");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/*.container {
+    max-width: 1170px;
+}*/
+
+:root {
+    --white: #ffffff;
+    --black: #000;
+    --gary-color: #727272;
+    --lightgary-color: #b2b9bd;
+    --theme-color: #012c5a;
+    --primary-color: #6bc540;
+}
+
+p {
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 2.0625rem;
+    color: #828282;
+}
+
+h1,
+h2,
+h3 {
+    color: #000;
+    font-family: "Eurostar Black Extended";
+}
+
+.img-auto {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+a,
+button {
+    text-decoration: none !important;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    font-family: "Poppins", sans-serif;
+}
+
+a:hover,
+button:hover {
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+figure {
+    margin: 0;
+}
+
+section {
+    padding: 5rem 0;
+    position: relative;
+}
+
+.theme--color {
+    color: var(--theme-color);
+}
+
+
+/* loader */
+
+.preLoader {
+    width: 100%;
+    height: 100%;
+    z-index: 1111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.preLoader.black {
+    background-color: var(--white);
+    z-index: 11113;
+}
+
+.preLoader.white {
+    z-index: 11112;
+    background-color: var(--theme-color);
+}
+
+.preLoader.black img {
+    /* filter: brightness(0) invert(1); */
+}
+
+
+/* loader */
+
+
+/* Cursor Start */
+
+.mouse-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    visibility: hidden;
+}
+
+.cursor-inner {
+    margin-left: 2px;
+    margin-top: 2px;
+    width: 7px;
+    height: 7px;
+    z-index: 10000001;
+    background-color: var(--primary-color);
+    -webkit-transition: width 0.3s ease-in-out, height 0.3s ease-in-out, margin 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out, height 0.3s ease-in-out, margin 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out, margin 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.cursor-inner.cursor-hover {
+    margin-left: -10px;
+    margin-top: -10px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-color);
+    opacity: 0.3;
+}
+
+
+/* Cursor End */
+
+
+/* btn css */
+
+.themeBtn {
+    background: var(--primary-color);
+    font-size: 1.125rem;
+    color: var(--white);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: inline-block;
+    padding: 0.5em 1.35em;
+    border-radius: 5px;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.themeBtn.borderBtn {
+    background: transparent;
+    border: 1px solid #fff;
+    padding: 1.04em 2em;
+}
+
+
+/* btn css */
+
+
+/* mouse animation css  */
+
+.bounce-element {
+    animation: bounce 0.9s infinite alternate;
+    -webkit-animation: bounce 0.9s infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(-15px);
+    }
+}
+
+@-webkit-keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(-15px);
+    }
+}
+
+.mouse {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 11;
+    text-align: center;
+}
+
+
+/* mouse animation css  */
+
+
+/* navigation css */
+
+.header {
+    position: relative;
+    z-index: 999;
+}
+
+.topar {
+    background: var(--theme-color);
+    padding: 11px 0;
+}
+
+svg {
+    position: absolute;
+}
+
+.topar ul {
+    display: flex;
+    align-items: center;
+    gap: 8rem;
+}
+
+.topar ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topar ul li label {
+    font-size: 1.125rem;
+    color: var(--white);
+    margin: 0;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: normal;
+}
+
+.topar ul li a {
+    font-size: 1rem;
+    color: var(--white);
+    font-weight: 400;
+}
+
+.topar select {
+    display: table;
+    margin-left: auto;
+    background: transparent;
+    border: 0;
+    font-size: 1.0625rem;
+    color: var(--white);
+    font-weight: 400;
+    padding: 0 4px;
+}
+
+.navbar-nav {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-size: 1.0625rem;
+    color: var(--black);
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 0 0;
+    display: inline-block;
+    font-family: "Roboto", sans-serif;
+}
+
+.an-navbar {
+    padding: 0.7rem 0;
+}
+
+.navbar-brand>img,
+.footLogo>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.navbar-brand {
+    margin: 0 0 0 -4.5rem;
+    padding: 0;
+    width: 280px;
+}
+
+
+/* navigation css */
+
+
+/* slider css */
+
+.mainSlider {
+    height: 930px;
+    position: relative;
+    z-index: 1;
+}
+
+.homeSlider.swiper-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+}
+
+.homeSlider .slide-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideContent {
+    text-align: left;
+}
+
+.homeSlider .slide-inner:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgb(1 44 90 / 93%);
+}
+
+.slideContent h1 {
+    font-size: 1.5rem;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+.slideContent h2 {
+    font-size: 2.9375rem;
+    color: var(--white);
+    text-transform: uppercase;
+    line-height: 3.5625rem;
+}
+
+.slideContent p {
+    color: var(--white);
+    margin: 0 0 25px;
+    width: 83%;
+}
+
+.slideContent .d-flex {
+    align-items: center;
+    gap: 1.3rem;
+}
+
+.slideContent .d-flex .themeBtn {
+    border: 1px solid var(--white);
+    background: transparent;
+}
+
+.slideContent .d-flex .themeBtn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+figure.slideimg {
+    text-align: right;
+    position: relative;
+    z-index: 1;
+}
+
+figure.slideimg svg.vector1 {
+    left: 0;
+    z-index: -1;
+}
+
+
+/* slider css */
+
+.heading {
+    font-size: 2.9375rem;
+    text-transform: uppercase;
+}
+
+.para {
+    font-size: 1.25rem;
+    color: #282828;
+    line-height: 2.1875rem;
+}
+
+.content .para {
+    margin: 0 0 2.2rem;
+}
+
+.content .heading {
+    margin: 0 0 15px;
+}
+
+.radius--img img {
+    border-radius: 19px;
+}
+
+.purchase--card {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 2rem;
+    /* padding: 0 2.5rem; */
+}
+
+.purchase--card svg {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    position: static;
+}
+
+.purchase--card .heading {
+    font-size: 1.6875rem;
+    margin: 1.5rem 0 15px;
+}
+
+.purchase--card p {
+    font-size: 1rem;
+    color: #282828;
+    line-height: 2rem;
+    margin: 0;
+}
+
+.purchase--card .purchase--content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 3rem 3rem 0;
+}
+
+.purchase--main {
+    background: #f9f9f9;
+    border-radius: 50px;
+}
+
+.purchase--card svg path {
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.purchase--card:hover svg path {
+    stroke: var(--primary-color);
+    stroke-width: 3;
+}
+
+.icon--circle {
+    position: relative;
+    z-index: 1;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon--circle:before {
+    content: "";
+    position: absolute;
+    right: -50px;
+    width: 140px;
+    height: 140px;
+    background: rgb(107 197 64 / 10%);
+    border-radius: 50%;
+    top: 10px;
+    z-index: -1;
+}
+
+.icon--circle.cirle--two:before {
+    right: 0;
+    left: -30px;
+    background: rgb(218 218 218 / 20%);
+    top: 20px;
+}
+
+.nnb-main .row {
+    position: relative;
+    padding: 30px 0;
+}
+
+.nnb-main .row:before {
+    content: "";
+    position: absolute;
+    background: #f9f9f9;
+    top: 0;
+    bottom: 0;
+    left: -30px;
+    width: 60%;
+    height: 100%;
+    border-radius: 19px;
+}
+
+.nnb--content .heading {
+    font-size: 2.75rem;
+    width: 80%;
+}
+
+.nnb--content {
+    padding-right: 0.7rem;
+}
+
+.nnb--content ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 2rem;
+}
+
+.nnb--content ul li span {
+    width: 30.48px;
+    height: 30.48px;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    font-size: 13px;
+    color: var(--white);
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.nnb--content ul li p {
+    font-size: 1rem;
+    color: #282828;
+    line-height: 2.1875rem;
+    margin: 0;
+}
+
+.nnb--content .themeBtn {
+    background: var(--theme-color);
+}
+
+.quote--main {
+    background: url(../images/quotebg.jpg) no-repeat top center/ cover;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    border-radius: 50px;
+}
+
+.subHeading {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+
+.quote-content .subHeading {
+    color: var(--white);
+}
+
+.quote-content .heading {
+    color: var(--white);
+    line-height: 3.5625rem;
+    margin: 0 0 1.2rem;
+}
+
+.quote-content .d-flex {
+    align-items: center;
+    gap: 20px;
+}
+
+.quote--main:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgb(1 43 90 / 90%);
+    z-index: -1;
+    border-radius: 50px;
+}
+
+.quote-content .subHeading {
+    margin: 0 0 10px;
+}
+
+.quote-content .themeBtn {
+    border: 1px solid var(--white);
+    background: transparent;
+}
+
+.quote-content .themeBtn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+figure.quote--img {
+    margin-top: -7rem;
+}
+
+.nnb-main {
+    padding-bottom: 8rem;
+}
+
+
+/* meet css start */
+
+.meetSec {
+    padding: 5rem 0;
+}
+
+.meetSec p.para {
+    font-size: 15px;
+    color: #282828;
+    margin: 0;
+    line-height: 1.875rem;
+}
+
+.meetWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.875rem;
+    margin-top: 2.25rem;
+}
+
+.meet-card {
+    background-color: var(--primary);
+    border-radius: 1.5625rem;
+    overflow: hidden;
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    position: relative;
+    width: 100%;
+    transition: 0.5s ease;
+    flex: 60%;
+    z-index: 1;
+    height: 465px;
+}
+
+.meet-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0rem;
+    width: 100%;
+    height: 100%;
+    background-color: var(--theme-color);
+    border-radius: 1.25rem;
+    z-index: -1;
+    transition: 0.5s ease;
+}
+
+.meet-card:hover {
+    flex-basis: 100%;
+}
+
+.meet-card:hover::before {
+    top: -4rem;
+}
+
+.meet-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--primary-color);
+    z-index: -2;
+}
+
+.meet-card .card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 4.25rem 0 0 1.5rem;
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+.meet-card:hover .card-content {
+    opacity: 1;
+}
+
+.meet-card .card-content h3 {
+    color: var(--white);
+    font-size: 2.1875rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 8px;
+    width: 300px;
+}
+
+.meet-card .card-content p {
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.meet-card .card-content a {
+    margin-top: 12rem;
+    margin-left: 3rem;
+    width: 96px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    border: 6px solid var(--primary-color);
+    font-size: 3rem;
+    transform: rotate(-45deg);
+    color: var(--primary-color);
+    transition: 0.5s ease;
+}
+
+.meet-card h4 {
+    position: absolute;
+    top: 1.25rem;
+    right: -7.5rem;
+    color: var(--white);
+    opacity: 0.04;
+    writing-mode: tb;
+    transform: scale(-1);
+    font-size: 5.625rem;
+    font-family: "Eurostar Black Extended";
+    text-transform: uppercase;
+}
+
+.meet-card:hover .card-content a {
+    transform: rotate(-45deg);
+    /* margin: 0; */
+    margin-top: 4rem;
+    margin-left: 0rem;
+}
+
+.meet-card figure {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+}
+
+.meet-card .card-content ul li span {
+    font-size: 17px;
+    color: var(--white);
+    font-family: "Eurostar Black Extended";
+}
+
+.meet-card .card-content ul li {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.meet-card .card-content ul li+li {
+    margin-top: 15px;
+}
+
+.meet-card .card-content ul {
+    margin-top: 15px;
+}
+
+.nnb-choose {
+    background: #f9f9f9;
+    border-radius: 50px;
+}
+
+.financialSlider {
+    margin-right: -22rem;
+}
+
+.financialSlider .icon--circle:before {
+    display: none;
+}
+
+.financialSlider .purchase--card:hover svg path {
+    stroke: #012b5a;
+}
+
+
+/* meet css end */
+
+
+/* Footer Css Start */
+
+footer {
+    background: #001327;
+    z-index: 1;
+    position: relative;
+    padding-top: 5rem;
+}
+
+
+/* 
+footer::before,
+footer::after {
+    content: "";
+    position: absolute;
+    top: 2.75rem;
+    left: 0;
+    width: 43%;
+    height: 1px;
+    background: rgb(255 255 255 / 20%);
+} */
+
+
+/* footer::after {
+    left: auto;
+    right: 0;
+} */
+
+.footLogo {
+    display: inline-block;
+    position: relative;
+    width: 450px;
+}
+
+
+/* .footLogo::before,
+.footLogo::after {
+    content: "";
+    position: absolute;
+    bottom: 1rem;
+    width: 50vw;
+    height: 1px;
+    background: rgb(255 255 255 / 20%);
+} */
+
+.footLogo::before {
+    right: calc(100% + 2rem);
+}
+
+.footLogo::after {
+    left: calc(100% + 2rem);
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 2rem;
+}
+
+.links li a {
+    color: var(--white);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.links li a:hover {
+    color: var(--primary-color);
+}
+
+.contactBox h3 {
+    color: var(--white);
+    font-size: 1.125rem;
+    margin: 2rem 0 0.875rem 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.contactBox a,
+.contactBox span {
+    color: var(--white);
+    font-size: 1rem;
+    transition: 0.5s ease;
+}
+
+.contactBox div {
+    color: var(--white);
+    background: #002c5a;
+    width: 100px;
+    height: 100px;
+    display: grid;
+    place-items: center;
+    border-radius: 100%;
+    font-size: 2rem;
+    margin: auto;
+    box-shadow: 0 0 0 10px rgb(0 44 90 / 50%);
+    transition: 0.5s ease;
+}
+
+.contactBox:hover div {
+    animation: trin 1.5s infinite linear;
+    background-color: #6bc540;
+    box-shadow: 0 0 0 10px rgb(107 197 64 / 50%);
+}
+
+.contactBox:hover a {
+    color: var(--primary-color);
+}
+
+.contactWraps {
+    text-align: center;
+    padding-top: 3.375rem;
+    margin-top: 1rem;
+}
+
+.copyRight {
+    margin: 3.125rem auto 0;
+    max-width: 1480px;
+    border-top: 1px solid rgb(223 223 224 / 50%);
+    padding: 1.375rem 0;
+    align-items: center;
+}
+
+.copyRight p {
+    color: var(--white);
+    font-size: 1.125rem;
+    text-align: left;
+    margin: 0;
+}
+
+.footerSocial {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.footerSocial li a {
+    width: 60px;
+    height: 60px;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #001327;
+}
+
+.footerSocial li a:hover {
+    background: var(--primary-color);
+    color: #002c5a;
+}
+
+
+/* Footer Css End */
+
+.themeBtn:hover {
+    background: var(--theme-color);
+    color: var(--white);
+}
+
+.topar ul li a:hover {
+    color: var(--primary-color);
+}
+
+.nnb--content .themeBtn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+
+/* Innerpages */
+
+
+/* Pagetitle */
+
+.mainSlider.mainSlider--pagetitle {
+    height: 540px;
+}
+
+.mainSlider--pagetitle .homeSlider .slide-inner:before {
+    background: linear-gradient(90deg, #012c5a50 80%, #012c5a20);
+}
+
+
+/* About Us Page */
+
+.aboutInner__img,
+.aboutInner--2 .radius--img {
+    position: relative;
+}
+
+.aboutInner__img::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: url(../images/about-shape1.png) no-repeat center/contain;
+    position: absolute;
+    top: 1.25rem;
+    right: -2rem;
+    z-index: -1;
+}
+
+.aboutInner--2 .radius--img::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: var(--theme-color);
+    position: absolute;
+    bottom: -1.5rem;
+    left: -1.5rem;
+    border-radius: 19px;
+    z-index: -1;
+}
+
+
+/* Loan Options Page */
+
+.loanInner .purchase--card .purchase--content {
+    justify-content: center;
+    padding: 8rem 3rem 0;
+}
+
+.advantageTerms .col-md-4:nth-child(n+4) .themeBtn {
+    margin-top: 1.5rem;
+}
+
+.advantageTerms .themeBtn {
+    background: var(--white);
+    color: var(--black);
+    border: 1px solid var(--black);
+    padding: 1rem 0;
+}
+
+.advantageTerms .themeBtn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+.purchase--head {
+    text-align: center;
+}
+
+.purchase--head h2 {
+    text-transform: uppercase;
+    margin-bottom: 42.1px;
+    font-size: 47px;
+}
+
+.purchase--bnnr {
+    text-align: center;
+    background: url(../images/lnbnnr.png)no-repeat center/cover;
+    height: 368.25px;
+    position: relative;
+}
+
+.purchase--bnnr:hover {
+    border: 1px solid #6BC540;
+    transition: 0.3s ease-in-out;
+}
+
+.purchase--bnner img {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.loan--card {
+    border: 1px solid #DEDCDA;
+    position: relative;
+    margin-top: 164.4px;
+}
+
+.lcard--info {
+    text-align: center;
+    padding: 75px 44.5px;
+    position: relative;
+}
+
+.lcard--info h2 {
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 22.41px;
+}
+
+.lcard--info p {
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    color: #000;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.lcard-img {
+    position: absolute;
+    bottom: -113px;
+    left: 145px;
+}
+
+.loan-head {
+    margin: 87px 0 58px 0;
+}
+
+.loan-head h3 {
+    font-size: 44px;
+    width: 36%;
+    text-transform: uppercase;
+}
+
+.loan-head p {
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.75;
+    color: #282828;
+    width: 47%;
+}
+
+
+/* Purchase Vs Rent Page */
+
+.line {
+    height: 2000px;
+    width: 2px;
+    background: var(--black);
+    position: absolute;
+    left: 48%;
+    top: 5%;
+}
+
+.lline1 {
+    width: 40px;
+    height: 2px;
+    background-color: var(--black);
+    position: absolute;
+    left: 46%;
+    top: 6.5%;
+}
+
+.lline2 {
+    width: 40px;
+    height: 2px;
+    background-color: var(--black);
+    position: absolute;
+    left: 46%;
+    top: 21.3%;
+}
+
+
+.lline3 {
+    width: 40px;
+    height: 2px;
+    background-color: var(--black);
+    position: absolute;
+    left: 46%;
+    top: 36.5%;
+}
+
+.rline1 {
+    width: 40px;
+    height: 2px;
+    background-color: var(--black);
+    position: absolute;
+    left: 48%;
+    top: 14%;
+}
+
+
+.rline2 {
+    width: 40px;
+    height: 2px;
+    background-color: var(--black);
+    position: absolute;
+    left: 48%;
+    top: 29%;
+}
+
+
+.rline3 {
+    width: 40px;
+    height: 2px;
+    background-color: var(--black);
+    position: absolute;
+    left: 48%;
+    top: 44%;
+}
+
+.linewrap2 .line {
+    top: 53%;
+}
+
+.linewrap2 .lline1 {
+    top: 56%;
+    left: 45.1%;
+}
+
+.linewrap2 .lline2 {
+    top: 71.2%;
+    left: 45.1%;
+}
+
+.linewrap2 .lline3 {
+    top: 86.7%;
+    left: 45%;
+}
+
+.loanLine .lline4 {
+    width: 40px;
+    height: 2px;
+    background-color: var(--black);
+    position: absolute;
+    left: 46%;
+    top: 89.5%;
+}
+
+.linewrap2 .rline1 {
+    top: 63.5%;
+}
+
+.linewrap2 .rline2 {
+    top: 79%;
+}
+
+.linewrap2 .rline3 {
+    top: 94.5%;
+}
+
+.loanLine .line {
+    height: 2380px;
+    top: 16%;
+}
+
+.loanLine .lline1 {
+    top: 20%;
+}
+
+.loanLine .lline2 {
+    top: 43.3%;
+}
+
+.loanLine .lline3 {
+    top: 66.5%;
+}
+
+.loanLine .rline1 {
+    top: 31.5%;
+}
+
+.loanLine .rline2 {
+    top: 55%;
+}
+
+
+.loanLine .rline3 {
+
+    top: 78%;
+}
+
+.purchaseInner .purchase--card .purchase--content {
+    padding: 8rem 3rem 0;
+}
+
+.purchaseInner .col-md-6:nth-last-child(-n+2) .purchase--card {
+    margin-bottom: 0;
+}
+
+.step--card {
+    border: 1px solid #DEDCDA;
+    margin-top: 164.4px;
+    position: relative;
+}
+
+.step--card:hover {
+    border: 1px solid #6BC540;
+    transition: 0.3s ease-in-out;
+}
+
+.step--card img {
+    position: absolute;
+    top: -3rem;
+    right: -2rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.4s ease-in-out;
+}
+
+.step--card:hover img {
+    visibility: visible;
+    opacity: 100%;
+}
+
+.card--info {
+    padding: 75px 55px;
+    text-align: center;
+}
+
+.card--info h2 {
+    text-transform: uppercase;
+    margin-bottom: 22.41px;
+    font-size: 24px;
+}
+
+.card--info p {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    color: #000;
+    line-height: 1.625;
+}
+
+.card--img {
+    position: relative;
+    margin-top: 164.4px;
+}
+
+.card--img {
+    transition: all 300ms ease-in-out;
+}
+
+.card--img:hover>img {
+    filter: invert(69%) sepia(45%) saturate(628%) hue-rotate(55deg) brightness(90%) contrast(89%);
+}
+
+.card--img span {
+    width: 152.03px;
+    height: 150.71px;
+    border: 15px solid #6BC540;
+    position: absolute;
+    border-radius: 50%;
+    left: 168px;
+    top: 290px;
+}
+
+.c--img {
+    position: absolute;
+    top: 20%;
+    left: 28%;
+}
+
+.vrss-head {
+    text-align: center;
+    margin-bottom: 20.38px;
+}
+
+.vrss-head h3 {
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.vrss-head p {
+    font-family: "Roboto"sans-serif;
+    font-size: 20px;
+    color: #000;
+    line-height: 1.75;
+}
+
+.versus-img {
+    margin-left: 241px;
+}
+
+.versus-img figure img {
+    border: 15px solid #6BC540;
+    border-radius: 50%;
+}
+
+.versus-cntnt:nth-child(odd) {
+    padding-right: 5rem;
+}
+
+.versus-cntnt:nth-child(even) {
+    padding-left: 2rem;
+}
+
+.versus-cntnt h2 {
+    font-size: 100px;
+    color: #6BC540;
+}
+
+.vrss--list li {
+    margin-left: 46px;
+}
+
+.vrss--list li:before {
+    content: url(../images/fnimg7.png);
+    width: 24px;
+    height: 24px;
+    left: 22px;
+    position: absolute;
+}
+
+.vrss-mid {
+    margin: 67.49px 0 63.51px 15px;
+}
+
+.vrss-mid h3 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.quote--purchase {
+    background: var(--primary-color);
+    padding: 5rem 0;
+    border-radius: 0;
+}
+
+.quote--purchase::before {
+    content: none;
+}
+
+.assossiated-cntnt {
+    background: #f9f9f9;
+}
+
+.assossiated-cntnt h2 {
+    font-size: 40px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.assossiated-cntnt p {
+    font-family: "Roboto", sans-serif;
+    color: #000;
+    font-size: 20px;
+    line-height: 1.75;
+    margin-bottom: 40px;
+}
+
+.nnb--content {
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.assoc--list li {
+    margin-bottom: 54.23px !important;
+    width: 108%;
+}
+
+.associ-para {
+    font-size: 16px !important;
+    color: #282828 !important;
+}
+
+.aff--head {
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.aff--head h2 {
+    font-size: 40px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 0 27rem;
+}
+
+.aff--head p {
+    font-size: 20px;
+    line-height: 1.75;
+    padding: 0 27rem;
+    color: #000;
+}
+
+.affd-list,
+.aff-img {
+    margin-top: 37.97px;
+}
+
+.affd-list li {
+    line-height: 2.187;
+    width: 70%;
+    font-size: 16px;
+}
+
+.aff-img figure img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.affd-para {
+    margin-top: 52.03px;
+    font-size: 16px;
+    line-height: 2.187;
+    color: #282828;
+}
+
+
+/* Morgage Calculator */
+
+.calculatorForm label {
+    text-transform: capitalize;
+}
+
+.calculatorForm input {
+    padding: 1.5rem 1.25rem;
+    border: 1px solid #00000020;
+}
+
+.calculatorForm .accordion>.card {
+    border: none;
+}
+
+.calculatorForm .accordion>.card>.card-header {
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.calculatorForm .accordion>.card .card-body {
+    padding: 1.25rem 0;
+}
+
+.calculatorForm .accordion>.card>.card-header label {
+    margin: 0;
+}
+
+.calculatorForm .themeBtn {
+    background: var(--primary-color);
+    border: none;
+    padding: 0.5rem 2.5rem;
+}
+
+.calculatorForm .themeBtn:hover {
+    background: var(--theme-color);
+}
+
+.newsletter {
+    margin-top: 4rem;
+}
+
+.newsletter__form {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #00000040;
+}
+
+.newsletter__form input {
+    width: 100%;
+    padding: 1rem 0;
+    border: 0;
+}
+
+.newsletter__form button {
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    background: transparent;
+    border: none;
+}
+
+.meet-card.meet-teampg .card-content a {
+    all: unset;
+    cursor: pointer;
+}
+
+.meetWrap.meet2nd .meet-card.meet-teampg {
+    justify-content: flex-start;
+    flex: 0 0 32.333%;
+}
+
+.meetWrap.meet2nd {
+    justify-content: flex-start;
+}
+
+.meetWrap.meet2nd .meet-card.meet-teampg:hover {
+    flex-basis: 47%;
+}
+
+.purchaseInner .heading.semi-blod {
+    font-size: 2.25rem;
+}
+
+
+/* mortgagePage Start */
+
+.motgageForm label {
+    display: block;
+    font-size: 14px;
+    color: #000000;
+    font-weight: 500;
+}
+
+.motgageForm input,
+.motgageForm select {
+    width: 100%;
+    height: 60px;
+    border: 2px solid var(--theme-color);
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 1.2rem;
+    margin: 0 0 1.7rem;
+}
+
+.paymentCircle {
+    background: #ffffff;
+    border: 1px solid #cbcbcb;
+    border-radius: 7px;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+    padding: 2rem 2.5rem;
+}
+
+.paymentCircle .sectionHeading {
+    font-size: 1.875rem;
+    text-align: center;
+    margin: 0 0 1.5rem;
+}
+
+.circlePayment figure {
+    width: 324px;
+    height: 324px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto 2rem;
+    position: relative;
+}
+
+.loanAmount ul {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    gap: 2.8rem;
+}
+
+.loanAmount ul li {
+    flex: 0 0 45%;
+    text-align: center;
+}
+
+.circlePayment .line-1 {
+    font-size: 1.125rem;
+    color: #6d6d6d;
+    font-weight: 400;
+    margin: 0;
+}
+
+.circlePayment .line-2 {
+    font-size: 1.75rem;
+    margin: 0;
+    color: #000;
+    font-weight: 600;
+}
+
+.circlePayment figure p {
+    font-size: 14px;
+    margin: 0;
+    color: #6d6d6d;
+    font-weight: 400;
+}
+
+.loanAmount ul li label {
+    font-size: 14px;
+    color: #919191;
+    font-weight: 500;
+    display: block;
+}
+
+.loanAmount ul li span {
+    font-size: 14px;
+    color: #182e45;
+    font-weight: 500;
+    border: 1px solid var(--theme-color);
+    display: inline-block;
+    padding: 0.3rem 1.76rem;
+    width: 100%;
+}
+
+.loanAmount ul li:last-child {
+    flex: 0 0 100%;
+}
+
+.principleLst ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 7rem;
+}
+
+.principleLst ul li span {
+    font-size: 17px;
+    color: #919191;
+    font-weight: 500;
+    position: relative;
+    padding-left: 22px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.principleLst ul li:nth-of-type(1) span::before {
+    background: #3498db;
+}
+
+.principleLst ul li:nth-of-type(1) div:last-child span::before {
+    background: #2ecc71;
+}
+
+.principleLst ul li:nth-of-type(2) span::before {
+    background: #e74c3c;
+}
+
+.principleLst ul li:nth-of-type(2) div:last-child span::before {
+    background: #9b59b6;
+}
+
+.principleLst ul li:nth-of-type(3) span::before {
+    background: #f39c12;
+}
+
+.principleLst ul li:nth-of-type(3) div:last-child span::before {
+    background: #d35400;
+}
+
+.principleLst ul li span::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 14px;
+    height: 14px;
+    background: var(--theme-color);
+    border-radius: 50%;
+}
+
+.principleLst ul li h6 {
+    font-size: 17px;
+    color: #2e2526;
+    margin: 0;
+}
+
+.principleLst ul li+li {
+    margin-top: 1rem;
+}
+
+.principleLst ul li div {
+    flex: 0 0 41%;
+}
+
+.principleLst {
+    padding-top: 4.5rem;
+}
+
+.principleLst ul li .greBg:before {
+    background: var(--primary-color);
+}
+
+
+/* slider range css  */
+
+input[type='range'] {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 287px;
+    margin: 0;
+    padding: 0 2px;
+    /* Add some L/R padding to ensure box shadow of handle is shown */
+    /* overflow: hidden; */
+    border: 0;
+    border-radius: 50px;
+    outline: none;
+    background: linear-gradient(#002a5c, #002a5c) no-repeat center;
+    /* Use a linear gradient to generate only the 2px height background */
+    background-size: 100% 4px;
+    pointer-events: none;
+}
+
+input[type='range']:active,
+input[type='range']:focus {
+    outline: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    height: 13px;
+    width: 13px;
+    border-radius: 50px;
+    background-color: #002a5c;
+    position: relative;
+    margin: 5px 0;
+    /* Add some margin to ensure box shadow is shown */
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: all;
+    box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
+}
+
+input[type='range']::-webkit-slider-thumb::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 13px;
+    left: 100%;
+    width: 2000px;
+    height: 2px;
+}
+
+.multi-range {
+    position: relative;
+    height: 23px;
+    display: block;
+}
+
+.multi-range input[type='range'] {
+    position: absolute;
+    left: 0;
+}
+
+.multi-range input[type='range']:nth-child(1)::-webkit-slider-thumb::before {
+    background-color: red;
+}
+
+.multi-range input[type='range']:nth-child(2) {
+    background: none;
+}
+
+.multi-range input[type='range']:nth-child(2)::-webkit-slider-thumb::before {
+    background-color: grey;
+}
+
+.payofBox {
+    /* height: 100px; */
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+    border-radius: 7px;
+    border: 1px solid #cbcbcb;
+    padding: 2rem 1rem 3rem;
+    margin-top: 1rem;
+}
+
+.payofBox h4 {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 0 6px;
+}
+
+.payoffBox ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.payoffBox ul li {
+    font-size: 12px;
+    color: #777777;
+    font-weight: 500;
+}
+
+.noUi-tooltip {
+    display: none;
+}
+
+.mall-property span {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1.5rem;
+}
+
+.mall-property span input {
+    width: 100%;
+    height: 32px;
+    border: 1px solid var(--theme-color);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.noUi-handle {
+    all: unset;
+    width: 14px !important;
+    height: 14px !important;
+    position: absolute;
+    background: #002a5c;
+    border-radius: 50px;
+    border: 0 !important;
+    box-shadow: none !important;
+    top: -5px !important;
+}
+
+.noUi-target {
+    height: 7px;
+    background: #002a5c;
+}
+
+.noUi-connect {
+    background: #002a5c;
+}
+
+.noUi-handle:after,
+.noUi-handle:before {
+    display: none;
+}
+
+.noUi-marker-horizontal.noUi-marker {
+    display: none;
+}
+
+.noUi-pips-horizontal {
+    padding: 0;
+}
+
+.payofBox.additionalBox {
+    padding: 2rem 1.5rem 3rem;
+    margin-top: 2rem;
+}
+
+.payofBox p {
+    font-size: 12px;
+    color: #777777;
+    text-align: center;
+    line-height: 1.7;
+    margin: 0 0 20px;
+}
+
+.lumpBox {
+    margin-top: 3rem;
+}
+
+.loanAmount.payBox {
+    margin-top: 1.5rem;
+}
+
+.loanAmount.payBox ul li:last-child span {
+    height: 32px;
+    width: 200px;
+}
+
+.themeBtn:hover {
+    background: #000;
+}
+
+div#graph canvas {
+    /* width: 300px !important; */
+    /* height: 300px !important; */
+    margin: auto;
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*top: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+}
+
+.circlePayment {
+    height: 250px;
+    position: relative;
+}
+
+.absolute-center {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.vk-mortgage-calculator .frequency {
+    min-height: 95px;
+    margin-bottom: 20px !important;
+}
+
+.vk-mortgage-calculator .monthly {
+    min-height: 170px;
+    margin-bottom: 20px !important;
+}
+
+.vk-mortgage-calculator .cashbomb {
+    min-height: 210px;
+    margin-bottom: 5px !important;
+}
+
+.vk-mortgage-calculator .valueExcess,
+.vk-mortgage-calculator .valueCashBomb {
+    text-align: center;
+    width: 30%;
+    display: inline-block;
+    border: 1px solid var(--theme-color);
+    border-radius: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-weight: 800;
+}
+
+.vk-mortgage-calculator .slider {
+    min-height: 40px;
+}
+
+#sliderIncreaseFreq label,
+#sliderAdditionalMth label,
+#sliderCashbombAmt label,
+#sliderCashbombPer label {
+    position: absolute;
+    width: 77px;
+    margin-left: -42px;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#sliderIncreaseFreq,
+#sliderAdditionalMth,
+#sliderCashbombAmt,
+#sliderCashbombPer {
+    width: 80%;
+    margin: 2em auto;
+    position: relative;
+    top: 7px;
+}
+
+.vk-mortgage-calculator .monthly p,
+.vk-mortgage-calculator .cashbomb p {
+    font-size: 12px !important;
+    line-height: 12px;
+    margin: 0 0 10px;
+}
+
+.vk-mortgage-calculator .ui-slider .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    width: 10px;
+    height: 10px;
+    cursor: default;
+    -ms-touch-action: none;
+    touch-action: none;
+    border-radius: 7px;
+    background: var(--theme-color);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.vk-mortgage-calculator .ui-widget.ui-widget-content {
+    border: 2px solid var(--theme-color);
+}
+
+.vk-mortgage-calculator .ui-widget {
+    font-size: 0.5px;
+}
+
+.loanAmount.payBox ul {
+    gap: 1rem 0;
+}
+
+
+/* Dropdown */
+
+.navbar .nav-item.drop-down {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar .drop-down>a:after {
+    content: '\f0d7';
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 900;
+    padding-left: 5px;
+    color: var(--primary-color);
+}
+
+.navbar .drop-down ul {
+    display: block;
+    position: absolute;
+    top: calc(100% + 30px);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    padding: 0;
+    background: #fff;
+    box-shadow: 0px 0px 30px rgb(127 137 161 / 25%);
+    transition: 0.3s;
+}
+
+.navbar .drop-down:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+}
+
+.navbar .drop-down li {
+    min-width: 200px;
+    position: relative;
+    list-style: none;
+}
+
+.navbar .drop-down ul a {
+    padding: .5em 1.125em;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #151515;
+    display: block;
+    text-transform: uppercase;
+}
+
+.navbar .drop-down ul a:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+
+
+
+.step--card.bdr1 {
+    border: 1px solid rgb(1 44 90 / 30%);
+    border-radius: 10px;
+}
+
+section.financial--steps.newpurchase .card--info p {
+    width: 69%;
+    margin: auto;
+}
+
+.step--card.bdrnone h3 {
+    font-size: 80px;
+    font-weight: 400;
+    color: #012C5A;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.step--card.bdrnone h3::before {
+    content: "";
+    position: absolute;
+    background: rgb(1 44 90 / 4%);
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    z-index: -1;
+    top: -34px;
+    right: 35%;
+}
+
+.step--card.bdrnone {
+    border: unset;
+}
+
+
+.step--card.bdr1 h3 {
+    font-size: 80px;
+    font-weight: 400;
+    color: #012C5A;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.step--card.bdr1 h3::before {
+    content: "";
+    position: absolute;
+    background: #6bc54038;
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    z-index: -1;
+    top: -34px;
+    right: 35%;
+}
+
+
+.new-deter {
+    background: url(../images/new-deterbg.png)center/cover no-repeat;
+    padding: 9rem 0;
+}
+
+section.quote--main.quote--purchase.new-deter .quote-content .subHeading {
+    font-size: 47px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.new-deter .quote-content {
+    text-align: center;
+}
+
+.new-deter .quote-content p {
+    font-size: 1.125rem;
+}
+
+
+
+.second-deter {
+    background: url(../images/new-deterbg1.png)center/cover no-repeat;
+    padding: 9rem 0;
+}
+
+
+.buysec-cntnt h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6BC540;
+}
+
+.buysec-cntnt p {
+    font-size: 1rem;
+    color: #282828;
+    line-height: 2;
+}
+
+.buysec-cntnt h2 {
+    font-size: 27px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.buy-sections {
+    padding: 3rem 0;
+}
+
+.lcard--info img {
+    width: 100px;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+}
+
+/* applynow__form */
+.applynow__form h3 {
+    font-size: 2.125rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.125rem;
+    text-transform: uppercase;
+}
+
+.applynow__form :is(input, textarea) {
+    display: block;
+    width: 100%;
+    padding: .75em 1em;
+    margin-bottom: 1.25rem;
+    border: 1px solid #cbcbcb;
+    border-radius: 5px;
+    background: var(--white);
+    font-size: 1rem;
+    color: var(--black);
+}
+
+.applynow__form :is(input, textarea)::placeholder {
+    color: var(--black);
+}
