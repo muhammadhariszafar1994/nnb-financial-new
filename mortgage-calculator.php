@@ -38,10 +38,10 @@
                                     <!-- value="350000" /> -->
                             </div>
                             <div class="">
-                                <label>Down Payment</label>
-                                <input type="text" id="downPayment" name="downPayment" data-type="currency"
+                                <label>Down Payment (%)</label>
+                                <input type="number" id="downPayment" name="downPayment"
                                 />    
-                                <!-- value="70000" /> -->
+                                <!-- data-type="currency" value="70000" /> -->
                             </div>
                             <div class="">
                                 <label>Loan Amount</label>
