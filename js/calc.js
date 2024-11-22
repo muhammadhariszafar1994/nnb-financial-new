@@ -32,29 +32,29 @@ var frontend = {
 // var numberCalc = 12;
 // var payOff = "";
 
-var homePrice = parseFloat($('#homePrice').val()) || 0;
-var downPayment = parseFloat($('#downPayment').val()) || 0;
-var homeownersInsurence = parseFloat($('#homeownersInsurence').val()) || 0;
+var homePrice = 0;
+var downPayment = 0;
+var homeownersInsurence = 0;
 var insurence = 0;
-var hoa = parseFloat($('#hoaDues').val()) || 0;
+var hoa = 0;
 var taxes = 0;
 var pmi = 0;
 var extraInicial = 0;
 var extra = 0;
-var loanAmount = parseFloat($('#loanAmount').val()) || 0;
-var years = parseFloat($('#LoanTerm').find(':selected').val()) || 0;
-var rate = parseFloat($('#interestRate').val()) || 0;
+var loanAmount = 0;
+var years = 0;
+var rate = 0;
 var Total = 0;
 var totalInterestPaid = 0;
-var PropertyTax = parseFloat($('#propertyTax').val()) || 0;
+var PropertyTax = 0;
 var TotalAllPayment = 0;
 var monthly = 0;
-var cashBombMoney = 50000;
+var cashBombMoney = 0;
 var PaymentAmount = 0;
-var labelAmount = 0;
+var labelAmount = "";
 var slider1 = 0;
 var numberCalc = 12;
-var payOff = 0;
+var payOff = "";
 
 extra = extraInicial + monthly;
 extra = parseFloat(extra);
@@ -193,27 +193,43 @@ function TotalSum(principle, hoa, taxes, pmi, insurence, extra) {
     graph(principle, hoa, taxes, pmi, insurence, extra);
 }
 
-function AllPayment(years, downPayment) {
-    calculate(loanAmount, rate, years);
-    calcInsurence(homeownersInsurence);
-    TotalSum(principle, hoa, taxes, pmi, insurence, extra);
-    if (slider1 == 1) {
-        monthlySlider();
-    } else if (slider1 == 2) {
-        biweekly();
-    } else {
-        weekly();
-    }
-    //calcPayOff();
-    var n = years * 12;
-    n = parseFloat(n);
+function calcDownPaymentAndLoanAmount(homePrice, downPayment) {
+    const downPaymentPercent = parseFloat(downPayment) / 100;
+    const actualDownPayment = homePrice * downPaymentPercent;
+    const actualLoanAmount = homePrice - actualDownPayment;
 
-    // Down Payment should be in percentage
-    const downPaymentInPercent = downPayment / 100;
-    TotalAllPayment = parseFloat(Total * n) + parseFloat(downPaymentInPercent);
-    
-    jQuery("#allPayment").html("$" + parseFloat(TotalAllPayment).toFixed(2));
-    formatCurrency(jQuery('#allPayment'));
+    return {
+        downPayment: actualDownPayment,
+        loanAmount: actualLoanAmount
+    };
+}
+
+function AllPayment(years, downPayment){
+    calculate(loanAmount, rate, years);
+	calcInsurence(homeownersInsurence);
+	TotalSum(principle, hoa, taxes, pmi, insurence, extra);
+	if(slider1 == 1){
+		monthlySlider();
+	}else if(slider1 == 2){
+		biweekly();
+	}else{
+		weekly();
+	}
+	//calcPayOff();
+	var n = years * 12;
+	n = parseFloat(n);
+
+    // Down payment should come in the percentage not mentioned as amount
+    const homePrice = Number($('#homePrice').val().replace(/[^0-9.-]+/g, ""));
+    const calculativeDownPaymentAndLoanAmount = calcDownPaymentAndLoanAmount(homePrice, downPayment);
+
+	TotalAllPayment = parseFloat(Total * n)  + parseFloat(calculativeDownPaymentAndLoanAmount.downPayment);
+    // TotalAllPayment = parseFloat(Total * n)  + parseFloat(downPayment);
+	
+    jQuery("#allPayment").html("$"+parseInt(TotalAllPayment));
+	formatCurrency(jQuery('#allPayment'));
+    // render loan Amount
+    jQuery("#loanAmount").val("$"+parseFloat(calculativeDownPaymentAndLoanAmount.loanAmount));
 }
 
 function Taxes(homePrice, PropertyTax) {
@@ -538,14 +554,16 @@ jQuery(document).ready(function ($) {
     });
 
     $(document).on('change', '#homePrice', function () {
-        homePrice = $(this).val();
-        homePrice = homePrice.replace('$', '').replace(',', '');
-        homePrice = parseFloat(homePrice);
+        console.log('homeprice', homePrice)
 
-        PropertyTax = $("#propertyTax").val();
-        PropertyTax = parseFloat(PropertyTax);
-        calculate(loanAmount, rate, years);
-        Taxes(homePrice, PropertyTax);
+        // homePrice = $(this).val();
+        // homePrice = homePrice.replace('$', '').replace(',', '');
+        // homePrice = parseFloat(homePrice);
+
+        // PropertyTax = $("#propertyTax").val();
+        // PropertyTax = parseFloat(PropertyTax);
+        // calculate(loanAmount, rate, years);
+        // Taxes(homePrice, PropertyTax);
     });
 
     $(document).on('change', '#propertyTax', function () {
