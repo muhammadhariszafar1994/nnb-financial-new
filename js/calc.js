@@ -87,6 +87,21 @@ function formatNumber(n) {
     return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
+function formatNumberWithPercentage(n) {
+    // Ensure the input is a string
+    let inputString = n.toString();
+
+    // Remove any existing percentage signs
+    let cleanedInput = inputString.replace(/%/g, "");
+
+    // Format the number with commas
+    let formattedNumber = cleanedInput.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    // Add a single percentage sign
+    return formattedNumber + "%";
+}
+
+
 function formatCurrency(input, blur) {
     // appends $ to value, validates decimal side
     // and puts cursor back in right position.
@@ -163,7 +178,42 @@ function formatCurrency(input, blur) {
     }
 }
 
-function calculate(loanAmount, rate, years) {
+function formatPercentage(input, blur) {
+    var label = false;
+    var input_val = input.val();
+
+    if (input_val === "") {
+        input_val = input.text();
+        label = true;
+    }
+
+    if (input_val === "") {
+        return;
+    }
+
+    var original_len = input_val.length;
+    var caret_pos = input.prop("selectionStart");
+
+    if (input_val.indexOf(".") >= 0) {
+        var left_side = input_val;
+        left_side = formatNumberWithPercentage(left_side);
+        input_val = left_side;
+
+    } else {
+        input_val = formatNumberWithPercentage(input_val);
+    }
+
+    if (label) {
+        input.text(input_val);
+    } else {
+        input.val(input_val);
+        
+        var updated_len = input_val.length;
+        caret_pos = updated_len - original_len + caret_pos;
+    }
+}
+
+function calculate(loanAmount = 0, rate = 0, years = 0) {
     var r = rate / 100;
     r = parseFloat(r / numberCalc);
     var n = years * numberCalc;
@@ -179,7 +229,7 @@ function calculate(loanAmount, rate, years) {
     TotalInterestPaid(years, principle, loanAmount);
 }
 
-function TotalInterestPaid(years, principle, loanAmount) {
+function TotalInterestPaid(years = 0, principle = 0, loanAmount = 0) {
     var n = years * numberCalc;
     n = parseFloat(n);
     totalInterestPaid = (n * principle) - loanAmount;
@@ -187,13 +237,13 @@ function TotalInterestPaid(years, principle, loanAmount) {
     formatCurrency(jQuery('#totalInterestPaid'));
 }
 
-function TotalSum(principle, hoa, taxes, pmi, insurence, extra) {
+function TotalSum(principle = 0, hoa = 0, taxes = 0, pmi = 0, insurence = 0, extra = 0) {
     Total = principle + hoa + taxes + pmi + insurence + extra;
     Total = parseFloat(Total);
     graph(principle, hoa, taxes, pmi, insurence, extra);
 }
 
-function calcDownPaymentAndLoanAmount(homePrice, downPayment) {
+function calcDownPaymentAndLoanAmount(homePrice = 0, downPayment = 0) {
     const downPaymentPercent = parseFloat(downPayment) / 100;
     const actualDownPayment = homePrice * downPaymentPercent;
     const actualLoanAmount = homePrice - actualDownPayment;
@@ -204,7 +254,7 @@ function calcDownPaymentAndLoanAmount(homePrice, downPayment) {
     };
 }
 
-function AllPayment(years, downPayment){
+function AllPayment(years = 0, downPayment = 0){
     calculate(loanAmount, rate, years);
 	calcInsurence(homeownersInsurence);
 	TotalSum(principle, hoa, taxes, pmi, insurence, extra);
@@ -228,11 +278,12 @@ function AllPayment(years, downPayment){
 	
     jQuery("#allPayment").html("$"+parseInt(TotalAllPayment));
 	formatCurrency(jQuery('#allPayment'));
+
     // render loan Amount
     jQuery("#loanAmount").val("$"+parseFloat(calculativeDownPaymentAndLoanAmount.loanAmount));
 }
 
-function Taxes(homePrice, PropertyTax) {
+function Taxes(homePrice = 0, PropertyTax = 0) {
     PropertyTax = PropertyTax / 100;
     taxes = (homePrice * PropertyTax) / 12;
     TotalSum(principle, hoa, taxes, pmi, insurence, extra);
@@ -240,7 +291,7 @@ function Taxes(homePrice, PropertyTax) {
     formatCurrency(jQuery('#TaxesSpan'));
 }
 
-function calcInsurence(homeownersInsurence) {
+function calcInsurence(homeownersInsurence = 0) {
     insurence = parseFloat(homeownersInsurence);
     insurence = insurence / 12;
     insurence = parseFloat(insurence);
@@ -275,7 +326,7 @@ function monthlySlider() {
     console.log('monthly');
 }
 
-function graph(principle, hoa, taxes, pmi, insurence, extra) {
+function graph(principle = 0, hoa = 0, taxes = 0, pmi = 0, insurence = 0, extra = 0) {
     jQuery("#graph").html('<canvas id="myChart"></canvas>');
     var ctx = jQuery('#myChart');
     var data = {
@@ -289,12 +340,12 @@ function graph(principle, hoa, taxes, pmi, insurence, extra) {
         ],
         datasets: [{
             data: [
-                principle.toFixed(2),
-                hoa.toFixed(2),
-                taxes.toFixed(2),
-                pmi.toFixed(2),
-                insurence.toFixed(2),
-                extra.toFixed(2)
+                !isNaN(principle) ? principle.toFixed(2) : 0,
+                !isNaN(hoa) ? hoa.toFixed(2) : 0,
+                !isNaN(taxes) ? taxes.toFixed(2) : 0,
+                !isNaN(pmi) ? pmi.toFixed(2) : 0,
+                !isNaN(insurence) ? insurence.toFixed(2) : 0,
+                !isNaN(extra) ? extra.toFixed(2) : 0
             ],
 
             backgroundColor: [
@@ -343,7 +394,6 @@ function graph(principle, hoa, taxes, pmi, insurence, extra) {
 }
 
 function calcPayOff() {
-
     var monthsLeftTotal = 0;
     var yearsLeftTotal = 0;
 
@@ -511,8 +561,51 @@ function calcPayOff() {
 
 }
 
-jQuery(document).ready(function ($) {
+function calculatePMIRate(downPaymentPercent, creditScore, loanType) {
+    let baseRate = 0.005; // Starting base rate: 0.5%
 
+    // Down Payment Adjustment
+    if (downPaymentPercent < 10) {
+        baseRate += 0.004; // Add 0.4%
+    } else if (downPaymentPercent >= 10 && downPaymentPercent < 20) {
+        baseRate += 0.002; // Add 0.2%
+    } else if (downPaymentPercent >= 20) {
+        baseRate -= 0.002; // Subtract 0.2%
+    }
+
+    // Credit Score Adjustment
+    if (creditScore < 650) {
+        baseRate += 0.004; // Add 0.4%
+    } else if (creditScore >= 650 && creditScore < 750) {
+        baseRate += 0.002; // Add 0.2%
+    } else if (creditScore >= 750) {
+        baseRate -= 0.002; // Subtract 0.2%
+    }
+
+    // Loan Type Adjustment
+    if (loanType === "FHA") {
+        baseRate += 0.002; // Add 0.2%
+    } else if (loanType === "VA") {
+        baseRate -= 0.002; // Subtract 0.2%
+    }
+
+    // Ensure the rate stays within 0.3% to 1.5%
+    baseRate = Math.min(Math.max(baseRate, 0.003), 0.015);
+
+    return (baseRate * 100).toFixed(2); // Return as a percentage
+}
+
+// // Example inputs
+// const downPayment = 15; // Down payment percentage
+// const creditScore = 720; // Credit score
+// const loanType = "Conventional"; // Loan type: "FHA", "VA", or "Conventional"
+
+// // Calculate PMI Rate
+// const pmiRate = calculatePMIRate(downPayment, creditScore, loanType);
+// console.log(`PMI Rate: ${pmiRate}%`);
+
+
+jQuery(document).ready(function ($) {
     $('.principle-interest-color').css('background-color', frontend.piColor);
     $('.hoa-dues-color').css('background-color', frontend.hoaDues);
     $('.taxes-color').css('background-color', frontend.taxes);
@@ -520,19 +613,23 @@ jQuery(document).ready(function ($) {
     $('.insurance-color').css('background-color', frontend.insurance);
     $('.extra-pay-color').css('background-color', frontend.extraPay);
     $('.principle-interest-color').css('background-color', frontend.piColor);
+
+    // formatted amount with dollar sign
     formatCurrency($('input#homePrice'));
-    formatCurrency($('input#downPayment'));
+    // formatCurrency($('input#downPayment'));
     formatCurrency($('input#loanAmount'));
     formatCurrency($('input#homeownersInsurence'));
     formatCurrency($('input#hoaDues'));
-    formatCurrency($('input#pmi'));
-    formatCurrency($('input#extraPayment'));
+    // formatCurrency($('input#pmi'));
+    // formatCurrency($('input#extraPayment'));
     formatCurrency(jQuery('#totalLoanAmount'));
+
     // rate = $('#interestRate').val();
     // calculate(loanAmount, rate, years);
     // calcInsurence(homeownersInsurence);
     // Taxes(homePrice, PropertyTax);
     // AllPayment(years, downPayment);
+    
     $("input[data-type='currency']").on({
         keyup: function (e) {
             if (e.keyCode >= 37 && e.keyCode <= 40 || e.keyCode == 8 || e.keyCode == 46) {
@@ -553,17 +650,32 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    $("input[data-type='percent']").on({
+        blur: function (e) {
+            if (e.keyCode >= 37 && e.keyCode <= 40 || e.keyCode == 8 || e.keyCode == 46) {
+                e = e;
+            } else {
+                formatPercentage($(this), "blur");
+            }
+        },
+        focusout: function (e) {
+            jQuery('#' + jQuery(this).attr('id')).trigger('change');
+        }
+    });
+
     $(document).on('change', '#homePrice', function () {
-        console.log('homeprice', homePrice)
+        homePrice = $(this).val();
+        homePrice = homePrice.replace('$', '').replace(',', '');
+        homePrice = parseFloat(homePrice);
 
-        // homePrice = $(this).val();
-        // homePrice = homePrice.replace('$', '').replace(',', '');
-        // homePrice = parseFloat(homePrice);
-
-        // PropertyTax = $("#propertyTax").val();
-        // PropertyTax = parseFloat(PropertyTax);
+        PropertyTax = $("#propertyTax").val();
+        PropertyTax = parseFloat(PropertyTax);
+        
+        Taxes(homePrice, PropertyTax);
+       
         // calculate(loanAmount, rate, years);
-        // Taxes(homePrice, PropertyTax);
+        // AllPayment(years, downPayment);
+        $('#loanAmount').change();
     });
 
     $(document).on('change', '#propertyTax', function () {
@@ -582,7 +694,9 @@ jQuery(document).ready(function ($) {
         downPayment = Number(downPayment.replace(/[^0-9.-]+/g, ""));
         //downPayment = downPayment.replace('$', '').replace(',','');
         //downPayment = parseFloat(downPayment);
+        
         AllPayment(years, downPayment);
+        $('#loanAmount').change();
     });
 
     $(document).on('change', '#loanAmount', function () {
@@ -623,16 +737,16 @@ jQuery(document).ready(function ($) {
         AllPayment(years, downPayment);
     });
 
-    $(document).on('change', '#extraPayment', function () {
-        extraInicial = $(this).val();
-        extraInicial = Number(extraInicial.replace(/[^0-9.-]+/g, ""));
-        //extraInicial = extraInicial.replace('$', '').replace(',','');
-        extra = parseFloat(extraInicial) + parseFloat(monthly);
-        extra = parseFloat(extra);
-        $("#extraPaymentSpan").text(extra);
-        formatCurrency(jQuery('#extraPaymentSpan'));
-        AllPayment(years, downPayment);
-    });
+    // $(document).on('change', '#extraPayment', function () {
+    //     extraInicial = $(this).val();
+    //     extraInicial = Number(extraInicial.replace(/[^0-9.-]+/g, ""));
+    //     //extraInicial = extraInicial.replace('$', '').replace(',','');
+    //     extra = parseFloat(extraInicial) + parseFloat(monthly);
+    //     extra = parseFloat(extra);
+    //     $("#extraPaymentSpan").text(extra);
+    //     formatCurrency(jQuery('#extraPaymentSpan'));
+    //     AllPayment(years, downPayment);
+    // });
 
     $(document).on('change', '#homeownersInsurence', function () {
         homeownersInsurence = $(this).val();
@@ -743,7 +857,7 @@ jQuery(document).ready(function ($) {
             calcPayOff();
             extra = parseFloat(extraInicial) + parseFloat(monthly);
             extra = parseFloat(extra);
-            $("#extraPaymentSpan").html("$" + extra.toFixed(2).toString());
+            // $("#extraPaymentSpan").html("$" + extra.toFixed(2).toString());
             $(".valueExcess").html("$" + monthly);
             AllPayment(years, downPayment);
 

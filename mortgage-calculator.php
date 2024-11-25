@@ -39,7 +39,7 @@
                             </div>
                             <div class="">
                                 <label>Down Payment (%)</label>
-                                <input type="number" id="downPayment" name="downPayment"
+                                <input type="text" id="downPayment" name="downPayment" data-type="percent"
                                 />    
                                 <!-- data-type="currency" value="70000" /> -->
                             </div>
@@ -50,25 +50,24 @@
                                 <!-- value="280000" /> -->
                             </div>
                             <div class="">
-                                <label>Interest Rate</label>
-                                <input type="number" min="0.125" step="0.125" id="interestRate" name="interestRate"
+                                <label>Interest Rate (%)</label>
+                                <input type="text" min="0.125" step="0.125" id="interestRate" name="interestRate" data-type="percent"
                                 />    
                                 <!-- value="4.5" /> -->
                             </div>
                             <div class=" ">
                                 <label>Loan Term</label>
-                                <select id="LoanTerm" name="LoanTerm" />
-                                <option value="0" disabled>Please select one</option>
-                                <option value="10">10 years</option>
-                                <option value="15"> 15 years</option>
-                                <option value="20"> 20 years</option>
-                                <option value="30"> 30 years</option>
-
+                                <select id="LoanTerm" name="LoanTerm">
+                                    <option>Please select the loan term</option>
+                                    <option value="10">10 years</option>
+                                    <option value="15"> 15 years</option>
+                                    <option value="20"> 20 years</option>
+                                    <option value="30"> 30 years</option>
                                 </select>
                             </div>
                             <div class="">
                                 <label>Property Tax</label>
-                                <input type="number" min="0" step="0.01" id="propertyTax" name="propertyTax" 
+                                <input type="text" data-type="currency" min="0" step="0.01" id="propertyTax" name="propertyTax" 
                                 />
                                 <!-- value="1.25"/> -->
                             </div>
@@ -86,16 +85,15 @@
                             </div>
                             <div class="">
                                 <label>Private Mortgage Insurance Per Month</label>
-                                <input type="text" data-type="currency" id="pmi" name="pmi" 
+                                <input type="text" data-type="percent" id="pmi" name="pmi"
                                 />
                                 <!-- value="0" /> -->
                             </div>
-                            <div class="">
+                            <!-- <div>
                                 <label>Extra Payment Per Month</label>
                                 <input type="text" data-type="currency" id="extraPayment" name="extraPayment" 
                                 />
-                                <!-- value="0" /> -->
-                            </div>
+                            </div> -->
                             <!--
                                 <div class="">
                                     <label>Email</label>
@@ -173,10 +171,10 @@
                                         <span class="greBg">Insurance </span>
                                         <h6 id="homeownersInsurenceSpan">$0.00</h6>
                                     </div>
-                                    <div>
+                                    <!-- <div class="d-none">
                                         <span> Extra Payment </span>
                                         <h6 id="extraPaymentSpan">$0.00</h6>
-                                    </div>
+                                    </div> -->
                                 </li>
                             </ul>
                         </div>
